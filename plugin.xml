@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+    id="cordova-plugin-chathead"
+    version="0.0.1">
+    <name>A native  plugin to show chat head</name>
+    <description></description>
+    <license>MIT</license>
+    <keywords></keywords>
+    <js-module src="www/plugin.js" name="CHATHEAD">
+        <clobbers target="chathead" />
+    </js-module>
+    
+    <!-- android -->
+    <platform name="android">
+
+      <config-file target="res/xml/config.xml" parent="/*">
+        <feature name="chathead">
+          <param name="android-package" value="io.ionic.chathead.ChatHeadPlugin" />
+          <param name="onload" value="true" />
+        </feature>
+      </config-file>
+      <config-file target="AndroidManifest.xml" parent="/manifest">
+        <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+      </config-file>
+
+      <config-file target="AndroidManifest.xml" parent="/manifest/application">
+         <service android:name="io.ionic.chathead.impl.DemoHoverMenuService" />
+      </config-file>
+
+      <source-file src="src/android/chathead" target-dir="src/main/java/io/ionic" />
+      <source-file src="res/anim" target-dir="src/main/res" />
+      <source-file src="res/drawable" target-dir="src/main/res" />
+      <source-file src="res/layout" target-dir="src/main/res" />
+      <resource-file src="res/values/colors.xml" target="res/values/colors.xml" />
+      <resource-file src="res/values/dimens.xml" target="res/values/dimens.xml" />
+      <resource-file src="res/values/hovermenuview.xml" target="res/values/hovermenuview.xml" />
+      <resource-file src="res/values/ids.xml" target="res/values/ids.xml" />
+      <resource-file src="res/values/styles.xml" target="res/values/styles.xml" />
+
+    </platform>
+</plugin>
+
