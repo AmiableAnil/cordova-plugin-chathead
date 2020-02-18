@@ -1,29 +1,43 @@
-<!DOCTYPE html>
 <html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title>Youtube Sample</title>
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"> </script>
+<head>
+    <title>Devcon Player</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
-    <script type="text/javascript" src="quml-player-dist.js"></script>
-    <style>
-        .katex-version {display: none;}
-        .katex-version::after {content:"0.10.2 or earlier";}
-      </style>
-      <span class="katex">
-        <span class="katex-mathml">The KaTeX stylesheet is not loaded!</span>
-        <span class="katex-version rule">KaTeX stylesheet version: </span>
-      </span>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css"
+          integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 </head>
+<style>
+    .carousel-inner {
+        overflow: unset;
+    }
+    .quml-summary{
+       overflow: unset;
+    }
+</style>
+<script>
+    // identifier=do_12&did=did_123&profileId=profile_123&studentId=student_123&
+    // stallId=stall_123&ideaId=idea_123&sid=side_123
+    // telemtryObj = { did: '1234' , profileId: '1234' ,
+    // stallId: '1234', ideaId: '1234' , sid: '1234' };
+    (function () {
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+         window.queryParamsObj = {
+            did: urlParams.get('did'),
+            profileId: urlParams.get('profileId'),
+            stallId: urlParams.get('stallId'),
+            ideaId: urlParams.get('ideaId'),
+            sid: urlParams.get('sid'),
+            contentId: urlParams.get('identifier'),
+            studentId: urlParams.get('studentId')
+        }
+        // document.getElementsByTagName("quml-holder")[0].setAttribute("telemetry", queryParamsObj);
+        console.log('queryParamsObj', JSON.stringify(queryParamsObj));
+    })();
+</script>
 <body>
-
-<!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
-        <quml-holder></quml-holder>
-        
-
-
-
+<quml-holder></quml-holder>
 </body>
+<script type="text/javascript" src="./quml-player-dist.js"></script>
 </html>
-

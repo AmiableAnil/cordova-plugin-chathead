@@ -1,6 +1,7 @@
 package io.ionic.chathead;
 
 import android.content.Intent;
+import android.util.Log;
 
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaPlugin;
@@ -18,7 +19,8 @@ public class ChatHeadPlugin extends CordovaPlugin {
     private static final int REQUEST_CODE_HOVER_PERMISSION = 1000;
 
     private boolean mPermissionsRequested = false;
-
+    private int isPermissionPageOpened = 0;
+    private DevconData dData;
     @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
         if (action.equals("showChatHead")) {
@@ -36,7 +38,7 @@ public class ChatHeadPlugin extends CordovaPlugin {
         String stallId = args.getString(5);
         String ideaId = args.getString(6);
         String sid = args.getString(7);
-        DevconData dData = new DevconData(identifier);
+        dData = new DevconData(identifier);
         dData.setDid(did);
         dData.setProfileId(profileId);
         dData.setStudentId(studentId);
@@ -46,6 +48,7 @@ public class ChatHeadPlugin extends CordovaPlugin {
         if (!mPermissionsRequested && !OverlayPermission.hasRuntimePermissionToDrawOverlay(cordova.getActivity())) {
             @SuppressWarnings("NewApi")
             Intent myIntent = OverlayPermission.createIntentToRequestOverlayPermission(cordova.getActivity());
+            isPermissionPageOpened = -1;
             cordova.getActivity().startActivityForResult(myIntent, REQUEST_CODE_HOVER_PERMISSION);
             callbackContext.success();
         } else {
@@ -60,6 +63,15 @@ public class ChatHeadPlugin extends CordovaPlugin {
             mPermissionsRequested = true;
         } else {
             super.onActivityResult(requestCode, resultCode, data);
+        }
+    }
+
+    @Override
+    public void onResume(boolean multitasking) {
+        super.onResume(multitasking);
+        if(isPermissionPageOpened == -1){
+            DemoHoverMenuService.showFloatingMenu(cordova.getActivity().getApplicationContext(), dData);
+            isPermissionPageOpened = 0;
         }
     }
 }

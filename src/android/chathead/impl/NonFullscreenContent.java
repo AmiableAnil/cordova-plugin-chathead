@@ -17,6 +17,7 @@ package io.ionic.chathead.impl;
 
 import android.app.Activity;
 import android.content.Context;
+import android.os.Build;
 import android.support.annotation.NonNull;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -59,20 +60,24 @@ public class NonFullscreenContent implements Content {
             final WebView webView = (WebView) mContent.findViewById(R.id.webview);
             webView.setBackgroundColor(0);
             final FrameLayout frameLayout = (FrameLayout) mContent.findViewById(R.id.layout_frame);
+//            frameLayout.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
+//                    (int) (getDeviceHeight() * 2.18)));
             frameLayout.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
                     (int) (getDeviceHeight() * 2.18)));
             String queryParams = "identifier="+devconData.getIdentifier()+"&did="+devconData.getDid()+"&profileId="+devconData.getProfileId()
                     +"&studentId="+devconData.getStudentId()+"&stallId="+devconData.getStallId()+"&ideaId="+devconData.getIdeaId()+"&sid="+devconData.getSid();
             Log.i("queryParams", queryParams);
-            webView.loadUrl("file:///android_asset/index.html?"+queryParams);
-            // webView.setInitialScale(80);
             WebSettings webSettings = webView.getSettings();
             webSettings.setJavaScriptEnabled(true);
-            webSettings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
-            webSettings.setLoadWithOverviewMode(true);
-            // webSettings.setUseWideViewPort(true);
-            // webView.setScrollBarStyle(WebView.SCROLLBARS_OUTSIDE_OVERLAY);
-            webView.setWebChromeClient(new WebChromeClient());
+            webView.loadUrl("file:///android_asset/index.html?"+queryParams);
+
+//
+//            webSettings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
+//            webSettings.setLoadWithOverviewMode(true);
+//            webView.setWebChromeClient(new WebChromeClient());
+//            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+//                webView.setWebContentsDebuggingEnabled(true);
+//            }
         }
         return mContent;
     }
