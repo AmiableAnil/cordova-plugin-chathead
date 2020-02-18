@@ -33,7 +33,7 @@ import android.widget.FrameLayout;
 import java.util.Set;
 import java.util.concurrent.CopyOnWriteArraySet;
 
-import in.devcon.app.R;
+import org.sunbird.app.R;
 
 /**
  * {@code FloatingTab} is the cornerstone of a {@link HoverView}.  When a {@code HoverView} is

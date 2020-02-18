@@ -24,7 +24,7 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.widget.FrameLayout;
 
-import in.devcon.app.R;
+import org.sunbird.app.R;
 
 /**
  * Fullscreen {@code View} that appears behind the other visual elements in a {@link HoverView} and

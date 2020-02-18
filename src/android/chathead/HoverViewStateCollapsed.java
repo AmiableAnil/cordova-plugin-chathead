@@ -22,7 +22,7 @@ import android.support.v7.util.ListUpdateCallback;
 import android.util.Log;
 import android.view.View;
 
-import in.devcon.app.R;
+import org.sunbird.app.R;
 
 import static android.view.View.GONE;
 import static android.view.View.INVISIBLE;

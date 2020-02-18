@@ -20,7 +20,9 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.view.ContextThemeWrapper;
 
-import in.devcon.app.R;
+import org.sunbird.app.R;
+
+import org.sunbird.app.R;
 import io.ionic.chathead.HoverMenu;
 import io.ionic.chathead.HoverView;
 import io.ionic.chathead.window.HoverMenuService;
@@ -31,8 +33,10 @@ import io.ionic.chathead.window.HoverMenuService;
 public class DemoHoverMenuService extends HoverMenuService {
 
     private static final String TAG = "DemoHoverMenuService";
+    private static DevconData devconData;
 
-    public static void showFloatingMenu(Context context) {
+    public static void showFloatingMenu(Context context, DevconData devconData) {
+        DemoHoverMenuService.devconData = devconData;
         context.startService(new Intent(context, DemoHoverMenuService.class));
     }
 
@@ -59,6 +63,6 @@ public class DemoHoverMenuService extends HoverMenuService {
 
     @NonNull
     private HoverMenu createHoverMenu() {
-        return new DemoHoverMenu(getApplicationContext(), "nonfullscreen");
+        return new DemoHoverMenu(getApplicationContext(), "nonfullscreen", DemoHoverMenuService.devconData);
     }
 }

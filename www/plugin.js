@@ -4,8 +4,8 @@ var PLUGIN_NAME = 'chathead';
 
 var chathead = {
 
-    showChatHead: function(success, error) {
-        exec(success, error, PLUGIN_NAME, "showChatHead", ["showChatHead"]);
+    showChatHead: function(identifier, did, profileId, studentId, stallId, ideaId, sid, success, error) {
+        exec(success, error, PLUGIN_NAME, "showChatHead", ["showChatHead",identifier, did, profileId, studentId, stallId, ideaId, sid]);
     }
 };
 

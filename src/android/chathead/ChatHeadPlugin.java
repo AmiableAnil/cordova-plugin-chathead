@@ -3,13 +3,12 @@ package io.ionic.chathead;
 import android.content.Intent;
 
 import org.apache.cordova.CallbackContext;
-import org.apache.cordova.CordovaInterface;
 import org.apache.cordova.CordovaPlugin;
 import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
 
 import io.ionic.chathead.impl.DemoHoverMenuService;
+import io.ionic.chathead.impl.DevconData;
 import io.ionic.chathead.overlay.OverlayPermission;
 
 /**
@@ -23,20 +22,34 @@ public class ChatHeadPlugin extends CordovaPlugin {
     @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
         if (action.equals("showChatHead")) {
-            this.showChatHead(callbackContext);
+            this.showChatHead(args, callbackContext);
             return true;
         }
         return false;
     }
 
-    public void showChatHead(CallbackContext callbackContext) {
+    public void showChatHead(JSONArray args, CallbackContext callbackContext) throws JSONException {
+        String identifier = args.getString(1);
+        String did = args.getString(2);
+        String profileId = args.getString(3);
+        String studentId = args.getString(4);
+        String stallId = args.getString(5);
+        String ideaId = args.getString(6);
+        String sid = args.getString(7);
+        DevconData dData = new DevconData(identifier);
+        dData.setDid(did);
+        dData.setProfileId(profileId);
+        dData.setStudentId(studentId);
+        dData.setStallId(stallId);
+        dData.setIdeaId(ideaId);
+        dData.setSid(sid);
         if (!mPermissionsRequested && !OverlayPermission.hasRuntimePermissionToDrawOverlay(cordova.getActivity())) {
             @SuppressWarnings("NewApi")
             Intent myIntent = OverlayPermission.createIntentToRequestOverlayPermission(cordova.getActivity());
             cordova.getActivity().startActivityForResult(myIntent, REQUEST_CODE_HOVER_PERMISSION);
             callbackContext.success();
         } else {
-            DemoHoverMenuService.showFloatingMenu(cordova.getActivity().getApplicationContext());
+            DemoHoverMenuService.showFloatingMenu(cordova.getActivity().getApplicationContext(), dData);
             callbackContext.success();
         }
     }

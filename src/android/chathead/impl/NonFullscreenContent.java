@@ -19,6 +19,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,9 +31,9 @@ import android.webkit.WebView;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
-import in.devcon.app.R;
-import io.ionic.chathead.Content;
+import org.sunbird.app.R;
 
+import io.ionic.chathead.Content;
 
 /**
  * A Hover menu screen that does not take up the entire screen.
@@ -41,9 +42,12 @@ public class NonFullscreenContent implements Content {
 
     private final Context mContext;
     private View mContent;
+    private DevconData devconData;
 
-    public NonFullscreenContent(@NonNull Context context) {
-        mContext= context.getApplicationContext();
+    public NonFullscreenContent(@NonNull Context context, DevconData devconData) {
+        this.mContext = context.getApplicationContext();
+        this.devconData = devconData;
+
     }
 
     @NonNull
@@ -51,23 +55,24 @@ public class NonFullscreenContent implements Content {
     public View getView() {
         if (null == mContent) {
             mContent = LayoutInflater.from(mContext).inflate(R.layout.content_non_fullscreen, null);
-
-            // We present our desire to be non-fullscreen by using WRAP_CONTENT for height.  This
-            // preference will be honored by the Hover Menu to make our content only as tall as we
-            // want to be.
-            final WebView webView = (WebView)  mContent.findViewById(R.id.webview);
-            final FrameLayout frameLayout = (FrameLayout)  mContent.findViewById(R.id.layout_frame);
-            frameLayout.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, (int)(getDeviceHeight()*2.3)));
-            webView.loadUrl("file:///android_asset/index.html");
-//            webView.setInitialScale(80);
+            Log.i("DevconData", devconData.toString());
+            final WebView webView = (WebView) mContent.findViewById(R.id.webview);
+            webView.setBackgroundColor(0);
+            final FrameLayout frameLayout = (FrameLayout) mContent.findViewById(R.id.layout_frame);
+            frameLayout.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
+                    (int) (getDeviceHeight() * 2.18)));
+            String queryParams = "identifier="+devconData.getIdentifier()+"&did="+devconData.getDid()+"&profileId="+devconData.getProfileId()
+                    +"&studentId="+devconData.getStudentId()+"&stallId="+devconData.getStallId()+"&ideaId="+devconData.getIdeaId()+"&sid="+devconData.getSid();
+            Log.i("queryParams", queryParams);
+            webView.loadUrl("file:///android_asset/index.html?"+queryParams);
+            // webView.setInitialScale(80);
             WebSettings webSettings = webView.getSettings();
             webSettings.setJavaScriptEnabled(true);
             webSettings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
             webSettings.setLoadWithOverviewMode(true);
-//            webSettings.setUseWideViewPort(true);
-//            webView.setScrollBarStyle(WebView.SCROLLBARS_OUTSIDE_OVERLAY);
+            // webSettings.setUseWideViewPort(true);
+            // webView.setScrollBarStyle(WebView.SCROLLBARS_OUTSIDE_OVERLAY);
             webView.setWebChromeClient(new WebChromeClient());
-            mContent.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
         }
         return mContent;
     }
@@ -87,13 +92,13 @@ public class NonFullscreenContent implements Content {
         // No-op.
     }
 
-    public int getDeviceHeight(){
-        Display display = ((WindowManager)(mContext.getSystemService(Context.WINDOW_SERVICE))).getDefaultDisplay();
+    public int getDeviceHeight() {
+        Display display = ((WindowManager) (mContext.getSystemService(Context.WINDOW_SERVICE))).getDefaultDisplay();
         DisplayMetrics outMetrics = new DisplayMetrics();
         display.getMetrics(outMetrics);
 
-        float density  = mContext.getResources().getDisplayMetrics().density;
+        float density = mContext.getResources().getDisplayMetrics().density;
         float dpHeight = outMetrics.heightPixels / density;
-        return  (int)dpHeight;
+        return (int) dpHeight;
     }
 }

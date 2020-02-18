@@ -23,7 +23,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
-import in.devcon.app.R;
+import org.sunbird.app.R;
 import io.ionic.chathead.Dragger;
 
 

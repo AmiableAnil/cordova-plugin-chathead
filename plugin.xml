@@ -36,6 +36,9 @@
       <resource-file src="res/values/hovermenuview.xml" target="res/values/hovermenuview.xml" />
       <resource-file src="res/values/ids.xml" target="res/values/ids.xml" />
       <resource-file src="res/values/styles.xml" target="res/values/styles.xml" />
+      <resource-file src="res/values/styles.xml" target="res/values/styles.xml" />
+      <resource-file src="assets/index.html" target="assets/index.html" />
+      <resource-file src="assets/quml-player-dist.js" target="assets/quml-player-dist.js" />
 
     </platform>
 </plugin>

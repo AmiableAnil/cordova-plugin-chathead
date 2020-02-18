@@ -31,7 +31,7 @@ import android.widget.RelativeLayout;
 import java.util.Set;
 import java.util.concurrent.CopyOnWriteArraySet;
 
-import in.devcon.app.R;
+import org.sunbird.app.R;
 import  io.ionic.chathead.view.InViewDragger;
 import  io.ionic.chathead.window.InWindowDragger;
 import  io.ionic.chathead.window.WindowViewController;

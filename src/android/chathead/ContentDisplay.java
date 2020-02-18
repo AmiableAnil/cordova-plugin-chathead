@@ -30,7 +30,7 @@ import android.view.ViewTreeObserver;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 
-import in.devcon.app.R;
+import org.sunbird.app.R;;
 
 /**
  * Rectangular area that displays {@link Content}.  A {@code ContentDisplay} also renders a caret

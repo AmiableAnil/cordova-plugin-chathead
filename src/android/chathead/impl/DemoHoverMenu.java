@@ -23,10 +23,11 @@ import android.support.annotation.Nullable;
 import android.util.TypedValue;
 import android.view.View;
 
+import org.sunbird.app.R;
+
 import java.util.Collections;
 import java.util.List;
 
-import in.devcon.app.R;
 import io.ionic.chathead.HoverMenu;
 
 /**
@@ -39,13 +40,13 @@ public class DemoHoverMenu extends HoverMenu {
     private final String mMenuId;
     private final Section mSection;
 
-    public DemoHoverMenu(@NonNull Context context, @NonNull String menuId) {
+    public DemoHoverMenu(@NonNull Context context, @NonNull String menuId, DevconData devconData) {
         mContext = context.getApplicationContext();
         mMenuId = menuId;
         mSection = new Section(
                 new SectionId("0"),
                 createTabView(),
-                new NonFullscreenContent(context)
+                new NonFullscreenContent(context, devconData)
         );
     }
 

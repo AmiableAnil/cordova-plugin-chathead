@@ -25,7 +25,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.RelativeLayout;
 
-import in.devcon.app.R;
+import org.sunbird.app.R;
 
 /**
  * Fullscreen View that provides an exit "drop zone" for users to exit the Hover Menu.

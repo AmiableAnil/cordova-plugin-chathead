@@ -24,7 +24,7 @@ import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.View;
 
-import in.devcon.app.R;
+import org.sunbird.app.R;
 
 /**
  * {@code View} that draws a triangle selector icon at a given horizontal position within its bounds.
