@@ -11,6 +11,7 @@ public class DevconData {
     String stallId = "";
     String ideaId = "";
     String sid = "";
+    String type = "";
 
     public DevconData(String identifier) {
         this.identifier = identifier;
@@ -18,6 +19,10 @@ public class DevconData {
 
     public String getIdentifier() {
         return identifier;
+    }
+
+    public String getType() {
+        return type;
     }
 
     public String getDid() {
@@ -80,6 +85,12 @@ public class DevconData {
         }
     }
 
+    public void setType(String type) {
+        if (type != null) {
+            this.type = type;
+        }
+    }
+
     @Override
     public String toString() {
         return "DevconData{" +
@@ -90,6 +101,7 @@ public class DevconData {
                 ", stallId='" + stallId + '\'' +
                 ", ideaId='" + ideaId + '\'' +
                 ", sid='" + sid + '\'' +
+                ", type='" + type + '\'' +
                 '}';
     }
 }

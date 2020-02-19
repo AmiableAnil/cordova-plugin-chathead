@@ -65,7 +65,7 @@ public class NonFullscreenContent implements Content {
             frameLayout.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
                     (int) (getDeviceHeight() * 2.18)));
             String queryParams = "identifier="+devconData.getIdentifier()+"&did="+devconData.getDid()+"&profileId="+devconData.getProfileId()
-                    +"&studentId="+devconData.getStudentId()+"&stallId="+devconData.getStallId()+"&ideaId="+devconData.getIdeaId()+"&sid="+devconData.getSid();
+                    +"&studentId="+devconData.getStudentId()+"&stallId="+devconData.getStallId()+"&ideaId="+devconData.getIdeaId()+"&sid="+devconData.getSid()+"&type="+devconData.getType();
             Log.i("queryParams", queryParams);
             WebSettings webSettings = webView.getSettings();
             webSettings.setJavaScriptEnabled(true);
