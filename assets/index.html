@@ -23,14 +23,17 @@
     (function () {
         const queryString = window.location.search;
         const urlParams = new URLSearchParams(queryString);
-         window.queryParamsObj = {
+        window.queryParamsObj = {
             did: urlParams.get('did'),
             profileId: urlParams.get('profileId'),
             stallId: urlParams.get('stallId'),
             ideaId: urlParams.get('ideaId'),
             sid: urlParams.get('sid'),
             contentId: urlParams.get('identifier'),
-            studentId: urlParams.get('studentId')
+            studentId: urlParams.get('studentId'),
+            type: urlParams.get('type'),
+            profileUrl: urlParams.get('profileUrl'),
+            name: urlParams.get('name')
         }
         // document.getElementsByTagName("quml-holder")[0].setAttribute("telemetry", queryParamsObj);
         console.log('queryParamsObj', JSON.stringify(queryParamsObj));
