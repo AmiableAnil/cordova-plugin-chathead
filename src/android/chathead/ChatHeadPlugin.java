@@ -39,6 +39,8 @@ public class ChatHeadPlugin extends CordovaPlugin {
         String ideaId = args.getString(6);
         String sid = args.getString(7);
         String type = args.getString(8);
+        String profileUrl = args.getString(9);
+        String name = args.getString(10);
         dData = new DevconData(identifier);
         dData.setDid(did);
         dData.setProfileId(profileId);
@@ -47,6 +49,8 @@ public class ChatHeadPlugin extends CordovaPlugin {
         dData.setIdeaId(ideaId);
         dData.setSid(sid);
         dData.setType(type);
+        dData.setProfileUrl(profileUrl);
+        dData.setName(name);
         if (!mPermissionsRequested && !OverlayPermission.hasRuntimePermissionToDrawOverlay(cordova.getActivity())) {
             @SuppressWarnings("NewApi")
             Intent myIntent = OverlayPermission.createIntentToRequestOverlayPermission(cordova.getActivity());

@@ -12,6 +12,24 @@ public class DevconData {
     String ideaId = "";
     String sid = "";
     String type = "";
+    String profileUrl = "";
+    String name = "";
+
+    public String getProfileUrl() {
+        return profileUrl;
+    }
+
+    public void setProfileUrl(String profileUrl) {
+        this.profileUrl = profileUrl;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public DevconData(String identifier) {
         this.identifier = identifier;
